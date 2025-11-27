@@ -66,7 +66,7 @@ public class NotificationService {
     public void addAnnouncementNotification(Study study, Long actorId, String announcementTitle){
         StudyMember actor = studyMemberRepository.findByStudyIdAndUserId(study.getId(),actorId).orElseThrow(() -> new BusinessException(CommonErrorCode.INVALID_REQUEST));
         String title = announcementTitle + " 공지 생성 알림";
-        String description = "공지 게시판에" + announcementTitle + " 게시글이 생성되었습니다. 스터디원들께서는 확인 바랍니다.";
+        String description = "공지 게시판에 " + announcementTitle + " 게시글이 생성되었습니다. 스터디원들께서는 확인 바랍니다.";
 
         Notification notification = Notification.builder().study(study).actor(actor)
                 .audienceType(AudienceType.ALL_MEMBERS).title(title).description(description).build();

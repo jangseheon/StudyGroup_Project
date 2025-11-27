@@ -69,7 +69,10 @@ public class StudyMemberService {
         if(studyMember.getRole() == StudyRole.LEADER){
             throw new BusinessException(CommonErrorCode.INVALID_REQUEST);
         }
-
+        
+        // 멤버 탈퇴 알림 생성
+        notificationService.addOutMemberNotification(studyMember.getStudy(), studyMember.getUser().getId());
+        
         // 멤버 상태 변경 (soft)
         studyMember.updateStatus(StudyMemberStatus.LEFT);
     }
